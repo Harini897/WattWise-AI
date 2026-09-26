@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WattWise AI - Data Engineering Dashboard</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #0b1220;
+    color: #e5e7eb;
+}
+
+header {
+    padding: 32px 6%;
+    background: linear-gradient(135deg, #102b46, #123b35);
+    border-bottom: 1px solid #263b4c;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+    color: #6ee7b7;
+}
+
+header p {
+    color: #cbd5e1;
+    margin-bottom: 0;
+}
+
+main {
+    max-width: 1300px;
+    margin: auto;
+    padding: 30px 5%;
+}
+
+h2 {
+    margin-top: 35px;
+    color: #6ee7b7;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    background: #131e30;
+    border: 1px solid #26374d;
+    border-radius: 14px;
+    padding: 22px;
+    min-width: 0;
+}
+
+.card-title {
+    font-size: 14px;
+    color: #a5b4c8;
+}
+
+.card-value {
+    font-size: 27px;
+    font-weight: 700;
+    margin: 14px 0;
+    color: #6ee7b7;
+    overflow-wrap: anywhere;
+}
+
+.card-subtitle {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.panel {
+    background: #131e30;
+    border: 1px solid #26374d;
+    border-radius: 14px;
+    padding: 22px;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 500px;
+}
+
+th, td {
+    padding: 13px;
+    text-align: left;
+    border-bottom: 1px solid #26374d;
+}
+
+th { color: #6ee7b7; }
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #26374d;
+}
+
+.tag {
+    display: inline-block;
+    background: #164e3e;
+    color: #a7f3d0;
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+@media (max-width: 600px) {
+    header h1 { font-size: 24px; }
+    main { padding: 20px 4%; }
+    .card-value { font-size: 23px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>⚡ WattWise AI</h1>
+    <p>Data Engineering Dashboard | Energy Analytics & Data Quality</p>
+    <span class="tag">SQLite Database Connected</span>
+</header>
+
+<main>
+
+    <h2>01 — Dataset Overview</h2>
+    <div class="grid">
+        
+    <div class="card">
+        <div class="card-title">Raw Dataset</div>
+        <div class="card-value">Household Power Consumption</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+        
+    <div class="card">
+        <div class="card-title">Raw Data Date Range</div>
+        <div class="card-value">16 Dec 2006 — 26 Nov 2010</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+        
+    <div class="card">
+        <div class="card-title">Daily Summary Date Range</div>
+        <div class="card-value">16 Dec 2006 — 26 Nov 2010</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+    </div>
+
+    <h2>02 — Energy & Data Quality</h2>
+    <div class="grid">
+    <div class="card">
+        <div class="card-title">Total Raw Readings</div>
+        <div class="card-value">2,075,259</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+    <div class="card">
+        <div class="card-title">Valid Active Power Readings</div>
+        <div class="card-value">2,049,280</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+    <div class="card">
+        <div class="card-title">Missing Active Power Readings</div>
+        <div class="card-value">25,979</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+    <div class="card">
+        <div class="card-title">Total Measured Energy</div>
+        <div class="card-value">37,283.7477 kWh</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+    <div class="card">
+        <div class="card-title">Daily Summary Records</div>
+        <div class="card-value">1,442</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+    <div class="card">
+        <div class="card-title">Summary Energy</div>
+        <div class="card-value">37,283.7471 kWh</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+    <div class="card">
+        <div class="card-title">Days With Missing Readings</div>
+        <div class="card-value">82</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+    <div class="card">
+        <div class="card-title">Days With Zero Valid Readings</div>
+        <div class="card-value">9</div>
+        <div class="card-subtitle"></div>
+    </div>
+    </div>
+
+    <div class="panel">
+        <h3>Latest Daily Energy Summaries</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Energy (kWh)</th>
+                    <th>Valid Readings</th>
+                    <th>Missing Readings</th>
+                </tr>
+            </thead>
+            <tbody>
+    <tr>
+        <td>2010-11-26</td>
+        <td>24.8017</td>
+        <td>1,263</td>
+        <td>0</td>
+    </tr>
+    
+    <tr>
+        <td>2010-11-25</td>
+        <td>23.8527</td>
+        <td>1,440</td>
+        <td>0</td>
+    </tr>
+    
+    <tr>
+        <td>2010-11-24</td>
+        <td>29.9375</td>
+        <td>1,440</td>
+        <td>0</td>
+    </tr>
+    
+    <tr>
+        <td>2010-11-23</td>
+        <td>26.2923</td>
+        <td>1,440</td>
+        <td>0</td>
+    </tr>
+    
+    <tr>
+        <td>2010-11-22</td>
+        <td>34.0256</td>
+        <td>1,440</td>
+        <td>0</td>
+    </tr>
+    
+    <tr>
+        <td>2010-11-21</td>
+        <td>15.0152</td>
+        <td>1,440</td>
+        <td>0</td>
+    </tr>
+    
+    <tr>
+        <td>2010-11-20</td>
+        <td>36.6168</td>
+        <td>1,440</td>
+        <td>0</td>
+    </tr>
+    
+    <tr>
+        <td>2010-11-19</td>
+        <td>26.1733</td>
+        <td>1,440</td>
+        <td>0</td>
+    </tr>
+    
+    <tr>
+        <td>2010-11-18</td>
+        <td>27.5359</td>
+        <td>1,440</td>
+        <td>0</td>
+    </tr>
+    
+    <tr>
+        <td>2010-11-17</td>
+        <td>26.3672</td>
+        <td>1,440</td>
+        <td>0</td>
+    </tr>
+    </tbody>
+        </table>
+    </div>
+
+    <h2>03 — Mapping Database</h2>
+    <div class="grid">
+    <div class="card">
+        <div class="card-title">Consumers</div>
+        <div class="card-value">0</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+    <div class="card">
+        <div class="card-title">Transformers</div>
+        <div class="card-value">0</div>
+        <div class="card-subtitle"></div>
+    </div>
+    
+    <div class="card">
+        <div class="card-title">Mappings</div>
+        <div class="card-value">0</div>
+        <div class="card-subtitle"></div>
+    </div>
+    </div>
+
+    <div class="panel">
+        <h3>Mapping Verification Status</h3>
+        <p>No mapping records available.</p>
+    </div>
+
+    <h2>04 — Project Progress</h2>
+    <div class="panel">
+        <div class="status-row">
+            <span>Dataset inspection</span><strong>Completed</strong>
+        </div>
+        <div class="status-row">
+            <span>Data cleaning and SQLite storage</span><strong>Completed</strong>
+        </div>
+        <div class="status-row">
+            <span>Daily energy summaries</span><strong>Generated</strong>
+        </div>
+        <div class="status-row">
+            <span>Data quality reporting</span><strong>Implemented</strong>
+        </div>
+        <div class="status-row">
+            <span>Mapping database structure</span><strong>Created</strong>
+        </div>
+        <div class="status-row">
+            <span>Verified real-world mappings</span><strong>Pending</strong>
+        </div>
+        <div class="status-row">
+            <span>Consumer-to-transformer prediction engine</span><strong>Pending</strong>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    WattWise AI | Generated from your local SQLite database
+</footer>
+
+</body>
+</html>
